@@ -1,0 +1,15 @@
+def get_even_numbers(numbers):
+    even_numbers = []  # Create an empty list to store even numbers
+    for number in numbers:  # Iterate over each number in the given list
+        if number % 2 == 0:  # Check if the number is divisible by 2 (i.e., even)
+            even_numbers.append(number)  # If it is even, add it to the even_numbers list
+    return even_numbers  # Return the list of even numbers
+
+# Create a list of numbers from 1 to 10
+numbers = list(range(1, 10))
+
+# Call the get_even_numbers function with the numbers list
+even_numbers = get_even_numbers(numbers)
+
+# Print the list of even numbers
+print(even_numbers)
