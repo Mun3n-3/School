@@ -1,0 +1,80 @@
+import math
+
+# Define the Employee class
+class Employee:
+    def __init__(self, id, name):
+        # Assign the provided attributes
+        self.id = id
+        self.name = name
+
+# Create the HourlyEmployee class, which inherits from the Employee class
+class HourlyEmployee(Employee):
+    def __init__(self, id, name, hours_worked, hourly_pay):
+        # Initialize the newly added attributes
+        self.hours_worked = hours_worked
+        self.hourly_pay = hourly_pay
+        # Call the superclass's constructor (Employee) using super()
+        super().__init__(id, name)
+
+    def calculate_hourly_pay(self):
+        hourly_payroll = self.hours_worked * self.hourly_pay
+        print("Hourly salary:")
+        print("ID:", self.id)
+        print("Name:", self.name)
+        print("Hourly pay:", math.trunc(hourly_payroll))
+        return
+
+# Create the SalaryEmployee class, which inherits from the Employee class
+class SalaryEmployee(Employee):
+    def __init__(self, id, name, basic_salary, allowances):
+        # Initialize the newly added attributes
+        self.basic_salary = basic_salary
+        self.allowances = allowances
+        # Call the superclass constructor (Employee) using super()
+        super().__init__(id, name)
+
+    def calculate_basic_salary(self):
+        salary = self.basic_salary + self.allowances
+        print("Basic salary:")
+        print("ID:", self.id)
+        print("Name:", self.name)
+        print("Salary:", math.trunc(salary))
+        return
+
+# Create the CommissionEmployee class, which inherits from the SalaryEmployee class
+class CommissionEmployee(SalaryEmployee):
+    def __init__(self, id, name, commission_rate, basic_salary, allowances):
+        # Initialize the newly added attribute
+        self.commission_rate = commission_rate
+        # Call the superclass's constructor (SalaryEmployee) using super()
+        super().__init__(id, name, basic_salary, allowances)
+
+    def calculate_commission(self):
+        commission = (self.basic_salary + self.allowances) * self.commission_rate
+        print("Commission:")
+        print("ID:", self.id)
+        print("Name:", self.name)
+        print("Commission:", math.trunc(commission))
+        return
+
+# Prompt the user to input the employee details
+id = input("Enter ID: ")
+name = input("Enter name: ")
+
+hourly_rate = float(input("Enter hourly rate: "))
+hours_worked = float(input("Enter hours worked: "))
+
+basic_salary = float(input("Enter basic salary: "))
+allowances = float(input("Enter allowances: "))
+
+commission_rate = float(input("Enter commission rate: "))
+
+# Create instances of the classes and calculate employee payroll
+employee1 = HourlyEmployee(id, name, hours_worked, hourly_rate)
+employee1.calculate_hourly_pay()
+
+employee2 = SalaryEmployee(id, name, basic_salary, allowances)
+employee2.calculate_basic_salary()
+
+employee3 = CommissionEmployee(id, name, commission_rate, basic_salary, allowances)
+employee3.calculate_commission()
